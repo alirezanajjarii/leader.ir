@@ -22,7 +22,7 @@ namespace selenium_test
             archive.Click();
             var section = driver.FindElement(By.XPath("/html/body/main/div[1]/section[1]/main/div[1]/ul/li[2]"));
             section.Click();
-            //var decade = driver.FindElements(By.XPath("/html/body/main/div[1]/section[1]/main/div[2]/ul/li"));
+           
             var speech = driver.FindElement(By.XPath($"/html/body/main/div[1]/section[2]/main/ul[2]/li/div[2]/h6/a[2]"));
             speech.Click();
             var title = driver.FindElement(By.ClassName("btitr"));
@@ -41,25 +41,7 @@ namespace selenium_test
 
 
             driver.Navigate().Back();
-            //for (int i = 1; i <= 4; i++)
-            //{
-            //    var year = driver.FindElement(By.XPath($"/html/body/main/div[1]/section[1]/main/div[2]/ul/li[{i}]"));
-            //    year.Click();
-
-            //    for (int j = 1; j <= 12; j++)
-            //    {
-            //        var month = driver.FindElement(By.XPath($"/html/body/main/div[1]/section[1]/main/div[3]/ul/li[{j}]"));
-            //        month.Click();
-            //        var speechNumber = driver.FindElements(By.XPath("/html/body/main/div[1]/section[2]/main/ul"));
-            //        for (int k = 0; k < speechNumber.Count; k++)
-            //        {
-            //            var speech = driver.FindElement(By.XPath($"/html/body/main/div[1]/section[2]/main/ul[{k}]/li/div[2]/h6/a[2]"));
-            //            speech.Click();
-
-            //        }
-
-            //    }
-            //}
+            
 
 
         }
