@@ -22,26 +22,48 @@ namespace selenium_test
             archive.Click();
             var section = driver.FindElement(By.XPath("/html/body/main/div[1]/section[1]/main/div[1]/ul/li[2]"));
             section.Click();
-           
-            var speech = driver.FindElement(By.XPath($"/html/body/main/div[1]/section[2]/main/ul[2]/li/div[2]/h6/a[2]"));
-            speech.Click();
-            var title = driver.FindElement(By.ClassName("btitr"));
-            var articleBody = driver.FindElement(By.Id("details"));
-            var date = driver.FindElement(By.XPath("/html/body/main/div[1]/section/main/article[1]/div[1]/time/h6"));
+            var years = driver.FindElements(By.XPath("/html/body/main/div[1]/section[1]/main/div[2]/ul/li"));
 
-            var heading = title.Text;
-            var body = articleBody.Text;
-            var name = date.Text;
-            name = new string(name.Where(c => !char.IsPunctuation(c)).ToArray());
+            for (int i = 1; i <= years.Count; i++)
+            {
+                var year = driver.FindElement(By.XPath($"/html/body/main/div[1]/section[1]/main/div[2]/ul/li[{i}]"));
+                year.Click();
 
-            string filePath = @"C:\Users\MEMO\Desktop\test";
-            string fileName = $"{name}.txt";
-            string fullPath = Path.Combine(filePath, fileName);
-            File.WriteAllText(fullPath, heading + body);
+                for (int j = 1; j <= 12; i++)
+                {
+                    var month = driver.FindElement(By.XPath($"/html/body/main/div[1]/section[1]/main/div[3]/ul/li[{j}]"));
+                    month.Click();
+                    var speechNumber = driver.FindElements(By.XPath($"/html/body/main/div[1]/section[2]/main/ul"));
+                    for (int k = 1; k <= speechNumber.Count; i++)
+                    {
+                        var speech = driver.FindElement(By.XPath($"/html/body/main/div[1]/section[2]/main/ul[{k}]/li/div[2]/h6/a[2]"));
+                        speech.Click();
+                        var title = driver.FindElement(By.ClassName("btitr"));
+                        var articleBody = driver.FindElement(By.Id("details"));
+                        var date = driver.FindElement(By.XPath("/html/body/main/div[1]/section/main/article[1]/div[1]/time/h6"));
+
+                        var heading = title.Text;
+                        var body = articleBody.Text;
+                        var name = date.Text;
+                        name = new string(name.Where(c => !char.IsPunctuation(c)).ToArray());
+
+                        string filePath = @"C:\Users\MEMO\Desktop\test";
+                        string fileName = $"{name}.txt";
+                        string fullPath = Path.Combine(filePath, fileName);
+                        File.WriteAllText(fullPath, heading + body);
 
 
-            driver.Navigate().Back();
+                        driver.Navigate().Back();
+                        var reSection = driver.FindElement(By.XPath("/html/body/main/div[1]/section[1]/main/div[1]/ul/li[2]"));
+                        reSection.Click();
+                        year.Click();
+
+                    }
+                }
+            }
             
+           
+
 
 
         }
