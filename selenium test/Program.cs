@@ -20,12 +20,20 @@ namespace selenium_test
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
             var archive = driver.FindElement(By.XPath("/html/body/footer/nav[3]/ul/li[5]/h6/a"));
             archive.Click();
+            Thread.Sleep(500);
             var section = driver.FindElement(By.XPath("/html/body/main/div[1]/section[1]/main/div[1]/ul/li[2]"));
             section.Click();
+            Thread.Sleep(500);
             var years = driver.FindElements(By.XPath("/html/body/main/div[1]/section[1]/main/div[2]/ul/li"));
 
             for (int i = 1; i <= years.Count; i++)
             {
+                if (i == 1 * 5)
+                {
+                    var Next = driver.FindElement(By.XPath("/html/body/main/div[1]/section[1]/main/div[2]/i[2]"));
+                    Next.Click();
+                }
+                Thread.Sleep(500);
                 var year = driver.FindElement(By.XPath($"/html/body/main/div[1]/section[1]/main/div[2]/ul/li[{i}]"));
                 year.Click();
 
@@ -56,7 +64,8 @@ namespace selenium_test
                         driver.Navigate().Back();
                         var reSection = driver.FindElement(By.XPath("/html/body/main/div[1]/section[1]/main/div[1]/ul/li[2]"));
                         reSection.Click();
-                        year.Click();
+                        var reSection_2 = driver.FindElement(By.XPath($"/html/body/main/div[1]/section[1]/main/div[2]/ul/li[{i}]"));
+                        reSection_2.Click();
 
                     }
                 }
