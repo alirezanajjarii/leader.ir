@@ -58,7 +58,12 @@ namespace selenium_test
                         string filePath = @"C:\Users\MEMO\Desktop\test";
                         string fileName = $"{name}.txt";
                         string fullPath = Path.Combine(filePath, fileName);
-                        File.WriteAllText(fullPath, heading + body);
+
+                        var arg = Environment.GetCommandLineArgs();
+                        String root = Path.GetDirectoryName(arg[0]);
+
+                        File.WriteAllText($@"{root}{fileName}.txt", heading + body);
+                        //File.WriteAllText($@"{root}\اطلاعات خبر ها\{id}.txt", Information);
 
 
                         driver.Navigate().Back();
@@ -70,8 +75,8 @@ namespace selenium_test
                     }
                 }
             }
-            
-           
+
+
 
 
 
