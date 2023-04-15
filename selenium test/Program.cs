@@ -54,17 +54,12 @@ namespace selenium_test
                         var body = articleBody.Text;
                         var name = date.Text;
                         name = new string(name.Where(c => !char.IsPunctuation(c)).ToArray());
-
-                        string filePath = @"C:\Users\MEMO\Desktop\test";
                         string fileName = $"{name}.txt";
-                        string fullPath = Path.Combine(filePath, fileName);
-
+          
                         var arg = Environment.GetCommandLineArgs();
                         String root = Path.GetDirectoryName(arg[0]);
 
                         File.WriteAllText($@"{root}{fileName}.txt", heading + body);
-                        //File.WriteAllText($@"{root}\اطلاعات خبر ها\{id}.txt", Information);
-
 
                         driver.Navigate().Back();
                         var reSection = driver.FindElement(By.XPath("/html/body/main/div[1]/section[1]/main/div[1]/ul/li[2]"));
